@@ -195,6 +195,7 @@ def resolve_graph(users_df):
     Notes:
         Does not have a return, modifies the users_df dataframe in-place.
     '''
+    
     users_df['INTERMEDIARY'] = users_df['INTERMEDIARY'].apply(lambda cell:cell/np.mean(np.abs(cell)))
     avg_vector = np.mean(users_df['INTERMEDIARY']) #
     users_df['INTERMEDIARY'] = users_df['INTERMEDIARY'].apply(lambda cell:cell-avg_vector) #
