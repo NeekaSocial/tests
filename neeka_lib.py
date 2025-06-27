@@ -358,7 +358,7 @@ def calculate_percentile_rank(posts_df):
     posts_df['NEEKA_PERCENTILE'] = posts_df['NEEKA_SCORE'].rank(pct = True, ascending = True).array
     posts_df['DIFFERENCE_RANK'] = posts_df.apply(lambda row:row['NEEKA_PERCENTILE']-row['SIMPLE_PERCENTILE'], axis=1)
 
-def neeka_score_calculation(posts_df):
+def neeka_score_calculation(posts_df, div_weight=1, cent_weight=1, pol_weight=1):
     '''Calculate the Neeka score for each post
 
     Args:
