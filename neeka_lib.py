@@ -384,12 +384,12 @@ def neeka_score_calculation(posts_df, div_weight=1, cent_weight=1, pol_weight=1)
         POLARITY = post['POLARITY']
         
         if UPVOTES > 0:
-            up_score = np.float64(LIKE_DIVERSITY + AVG_CENTRICITY - POLARITY/2)*UPVOTES
+            up_score = np.float64(LIKE_DIVERSITY*div_weight + AVG_CENTRICITY*cent_weight - POLARITY*pol_weight/2)*UPVOTES
         else:
             up_score = 0
 
         if DOWNVOTES > 0:
-            down_score = np.float64(DISLIKE_DIVERSITY + AVG_CENTRICITY + POLARITY/2)*DOWNVOTES
+            down_score = np.float64(DISLIKE_DIVERSITY*div_weight + AVG_CENTRICITY*cent_weight + POLARITY*pol_weight/2)*DOWNVOTES
         else:
             down_score = 0
         posts_df.at[post_id,'NEEKA_SCORE'] = ( up_score - down_score )
